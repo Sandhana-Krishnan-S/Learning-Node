@@ -1,9 +1,8 @@
-// routes.js
 const express = require('express');
 const router = express.Router();
-const ApiCall = require('../Controller/apiCall');
-const { Username } = require('../Controller/postApi');
-const { StoreName } = require('../Controller/StoreName');
+const ApiCall = require('../Temp/apiCall');
+const { Username } = require('../Temp/postApi');
+const { StoreName } = require('../Temp/StoreName');
 
 router.get('/', (req, res) => {
   res.send('Hello World!');
