@@ -1,7 +1,10 @@
 const express = require('express');
+const { verifyToken } = require('../Helpers/TokenGenerater');
 const router = express.Router();
 
-router.get('/', (req, res) => {
+// router.use(verifyToken);
+
+router.get('/', verifyToken , (req, res) => {
   res.send('Hello World!');
 });
 module.exports = router;
