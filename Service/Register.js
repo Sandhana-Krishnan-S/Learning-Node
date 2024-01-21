@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const UserData = require('../Model/userModel')
-const { signAccesstoken } = require('../Helpers/TokenGenerater')
+const { signAccesstoken, signRefreshtoken } = require('../Helpers/TokenGenerater')
 
 let InvalidValue = '';
 
@@ -34,8 +34,7 @@ const register = async (req , res) => {
         if(DoesEmailExist) {
             res.status(400).json({
                 status : false ,
-                message : "You have an existing account" ,
-                userData : userData
+                message : "You have an existing account" 
             })
         }
         else if(DoesUserExist) {
@@ -49,9 +48,12 @@ const register = async (req , res) => {
             if(Validate(userData)) {
                 const newUser = await new UserData(userData).save();
                 const accessToken = await signAccesstoken(newUser.id)
+                const refreshToken = await signRefreshtoken(newUser.id)
+                console.log("object")
                 res.status(200).json({
                     status : true ,
                     AccessToken : accessToken ,
+                    RefreshToken : refreshToken ,
                     message : 'The User has been succesfully regestered!.'
                 })
             }

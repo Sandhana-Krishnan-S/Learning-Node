@@ -1,4 +1,4 @@
-const { signAccesstoken } = require("../Helpers/TokenGenerater");
+const { signAccesstoken , signRefreshtoken } = require("../Helpers/TokenGenerater");
 const { loginValidate } = require("../Helpers/loginValidation");
 const UserData = require("../Model/userModel");
 
@@ -20,10 +20,12 @@ const login = async (req , res) => {
             else {
                 if(user.isValidPassword(userdata.Password)){
                     const accessToken = await signAccesstoken(user.id)
+                    const refreshToken = await signRefreshtoken(user.id)
                     res.status(200).json({
                         status : true ,
                         message : 'Login Success' ,
                         AccessToken : accessToken ,
+                        RefreshToken : refreshToken ,
                         userData : user
                     })
                 }

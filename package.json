@@ -19,7 +19,8 @@
     "mailgen": "^2.0.28",
     "mongoose": "^8.0.3",
     "nodemailer": "^6.9.8",
-    "randomstring": "^1.3.0"
+    "randomstring": "^1.3.0",
+    "redis": "^4.6.12"
   },
   "devDependencies": {
     "nodemon": "^3.0.2"
